@@ -29,19 +29,22 @@
 
             Console.WriteLine("Procházení pole");
 
-            //Savec[] zvirata = new Savec[] { kobylka, plejtvak, new Kun("Hatatitla") };
-            //foreach (Savec zvire in zvirata)
-            //    zvire.OzviSe();
+            Savec[] zvirata = new Savec[] { kobylka, plejtvak, new Kun("Hatatitla") };
+            foreach (Savec zvire in zvirata)
+                zvire.OzviSe();
 
-            Console.WriteLine(kobylka.Jmeno);
-            ((Kun)kobylka).Cvalej();
-            Console.WriteLine(kobylka.Jmeno);
+            //Console.WriteLine(kobylka.Jmeno);
+            //((Kun)kobylka).Cvalej();
+            //Console.WriteLine(kobylka.Jmeno);
             //kobylka.Jmeno = "l";
+
+            //Savec savec = new Savec(); // nelze instancovat abstraktní
+
 
         }
     }
 
-    class Savec
+    abstract class Savec
     {
         public string Jmeno { get; protected set; }
 
@@ -59,10 +62,11 @@
             Console.WriteLine("Cuc cuc cuc");
         }
 
-        public virtual void OzviSe()
-        {
-            Console.WriteLine("Dělám zvuk");
-        }
+        public abstract void OzviSe();
+        //public virtual void OzviSe()
+        //{
+        //    Console.WriteLine("Dělám zvuk");
+        //}
     }
 
     class Kun : Savec
