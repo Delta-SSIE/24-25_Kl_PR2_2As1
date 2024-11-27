@@ -18,5 +18,8 @@ namespace _02_OOP2_060_Iface_Utvary
 
         public double GetObsah() => Strana * Strana;
         public double GetObvod() => 4 * Strana;
+        public override string ToString() => $"Čtverec o straně {Strana}";
+
+        public string BlaBla() => "Blablabla";
     }
 }

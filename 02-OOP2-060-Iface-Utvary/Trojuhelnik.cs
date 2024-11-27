@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace _02_OOP2_060_Iface_Utvary
 {
@@ -27,5 +28,7 @@ namespace _02_OOP2_060_Iface_Utvary
         }
 
         public double GetObvod() => Strana1 + Strana2 + Strana3;
+        public override string ToString() => $"Trojúhelník o stranách {Strana1}, {Strana2}, {Strana3}";
+
     }
 }
