@@ -12,6 +12,7 @@ namespace _02_OOP2_070_Char_Inventory
         public int Health { get; private set; }
         public int MaxHealth { get; private init; }
         public int MaxWeight { get; private init; }
+        private Dice dice = new Dice();
 
         public int CarryWeight
         {
@@ -20,10 +21,11 @@ namespace _02_OOP2_070_Char_Inventory
                 return
                     inventory.TotalWeight
                     + ((LeftHand != null) ? LeftHand.Weight : 0)
-                    + RightHand?.Weight ?? 0
+                    + RightHand?.Weight ?? 0 //zkrácený zápis řádku nahoře
                     + Wearing?.Weight ?? 0;
             }
         }
+        public bool IsAlive => Health > 0;
 
 
         private Inventory inventory = new Inventory();
@@ -102,7 +104,60 @@ namespace _02_OOP2_070_Char_Inventory
             }
         }
 
+        public bool Equip(Armor armor)
+        {
+            if (Wearing != null)
+                return false;
+
+            if (inventory.Contains(armor))
+            {
+                inventory.Drop(armor);
+                Wearing = armor;
+                return true;
+            }
+
+            if (CanCarry(armor))
+            {
+                Wearing = armor;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public bool CanCarry(Item item) => item.Weight + CarryWeight <= MaxWeight;
         
+        public (int attack, int damage) AttackRoll()
+        {
+            Weapon weapon = LeftHand as Weapon;
+
+            if (weapon is null)
+                return (dice.Roll(), 0);
+
+            return (weapon.Attack + dice.CumulativeRoll(), weapon.Damage);
+        }
+
+        public int DefenseRoll()
+        {
+            int roll = Wearing?.Defense ?? 0;
+            roll += LeftHand is Shield shield ? shield.Defense : 0;
+            roll += dice.Roll();
+            return roll;
+        }
+
+        public int InitiativeRoll()
+        {
+            return dice.Roll();
+        }
+
+        public void DecreaseHealth(int decrement)
+        {
+            if (decrement > Health)
+                Health = 0;
+            else
+                Health -= decrement;
+        }
     }
 }
