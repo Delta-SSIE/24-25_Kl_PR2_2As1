@@ -5,10 +5,11 @@
         static void Main(string[] args)
         {
             Random rnd = new Random();
-            double pstPrichodu = 1 / 6; //cca + clovek za 6 minut
+            double pstPrichodu = 1d / 6; //cca + clovek za 6 minut
             int minTrvani = 1;
-            int maxTrvani = 14;
+            int maxTrvani = 24;
             int pocitadloLidi = 1;
+            int konec = 600;
 
             Clovek[] lide = 
             {
@@ -35,10 +36,14 @@
             }
 
             int cas = 0;
-            while (fronta.Count > 0) //dokud ve frontě někdo je
+            //while (fronta.Count > 0) //dokud ve frontě někdo je
+            while (cas < konec)
             {
                 foreach (Prepazka p in prepazky)
                 {
+                    if (fronta.Count < 1) //případ volných přepážek, nejsou ale lidi
+                        break;
+
                     if (p.KdyBudeVolno <= cas)
                     {
                         Clovek zakaznik = fronta.Dequeue();
@@ -46,8 +51,6 @@
                         Console.WriteLine($"Přepážka {p.ID}: {zakaznik.Jmeno} ({cas} - {cas + p.KdyBudeVolno})");
                     }
 
-                    if (fronta.Count < 1) //případ volných přepážek, nejsou ale lidi
-                        break;
                 }
 
                 //bude nový člověk?
@@ -56,6 +59,7 @@
                     Clovek novy = new Clovek(pocitadloLidi.ToString(), rnd.Next(minTrvani, maxTrvani + 1));
                     pocitadloLidi++;
                     fronta.Enqueue(novy);
+                    Console.WriteLine($"Čas {cas}: Nový člověk {novy.Jmeno} ({novy.Trvani})");
                 }
                 cas++;
             }
