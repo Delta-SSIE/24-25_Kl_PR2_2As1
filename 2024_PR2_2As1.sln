@@ -59,6 +59,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03-Data-02-hanojska_vez", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03-Data-03-Obchodnici", "03-Data-03-Obchodnici\03-Data-03-Obchodnici.csproj", "{A3538D86-4F5F-41C6-9E20-9E947DBDA830}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03-Data-04-Bludiste", "03-Data-04-Bludiste\03-Data-04-Bludiste.csproj", "{FDA35DCC-C42A-4481-B258-F321AB3C4064}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -165,6 +167,10 @@ Global
 		{A3538D86-4F5F-41C6-9E20-9E947DBDA830}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A3538D86-4F5F-41C6-9E20-9E947DBDA830}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A3538D86-4F5F-41C6-9E20-9E947DBDA830}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDA35DCC-C42A-4481-B258-F321AB3C4064}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDA35DCC-C42A-4481-B258-F321AB3C4064}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDA35DCC-C42A-4481-B258-F321AB3C4064}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDA35DCC-C42A-4481-B258-F321AB3C4064}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -195,6 +201,7 @@ Global
 		{170FDE36-EA13-479E-94B7-BBA136D630BF} = {D43D26A6-4F7E-4E25-86A9-F0458AD376B4}
 		{8808500B-C743-4352-865D-3CCA8FDA9C5A} = {D43D26A6-4F7E-4E25-86A9-F0458AD376B4}
 		{A3538D86-4F5F-41C6-9E20-9E947DBDA830} = {D43D26A6-4F7E-4E25-86A9-F0458AD376B4}
+		{FDA35DCC-C42A-4481-B258-F321AB3C4064} = {D43D26A6-4F7E-4E25-86A9-F0458AD376B4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F9D48053-56AC-4406-BD00-309BBAB8DC9E}
