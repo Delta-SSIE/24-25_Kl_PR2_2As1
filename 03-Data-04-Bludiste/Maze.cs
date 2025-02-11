@@ -7,6 +7,7 @@ class Maze
     public int Width { get; private set; }
     public int Height { get; private set; }
     private Coords _entrance;
+    public Coords Exit { get; private set; }
     private TileType[,] _map = null;
     private MazeDisplay _display = null;
 
@@ -34,6 +35,8 @@ class Maze
                     };
                     if (line[x] == 'S') //poznamenám si, kde je start
                         _entrance = new Coords(x, y);
+                    else if (line[x] == 'E') //poznamenám si, kde je start
+                        Exit = new Coords(x, y);
                 }
             }                
         }
@@ -53,20 +56,20 @@ class Maze
         _display.WrapUp();
     }
 
-    public void Solve()
+    public void Solve(IVisitList toBeVisited)
     {
         //připrav seznam míst k navštívení
-        Stack<Coords> toBeVisited = [];
+        //Stack<Coords> toBeVisited = [];
 
         //dej do něj start
-        toBeVisited.Push(_entrance);
+        toBeVisited.Add(_entrance);
 
         //dokud na seznamu něco je
         while(toBeVisited.Count > 0)
         {
 
             //vyndej první položku
-            Coords here = toBeVisited.Pop();
+            Coords here = toBeVisited.NextPlace();
 
             //když je to cíl, skonči
             if (_map[here.X, here.Y] == TileType.Exit)
@@ -80,7 +83,7 @@ class Maze
 
             foreach( Coords neighbor in neighbors) {
                 //dej je na seznam k projití
-                toBeVisited.Push(neighbor);
+                toBeVisited.Add(neighbor);
                 //a označ je jako "už o nich vím" (kromě cíle)
                 if (_map[neighbor.X, neighbor.Y] != TileType.Exit)
                     _map[neighbor.X, neighbor.Y] = TileType.Marked;
@@ -90,7 +93,7 @@ class Maze
             RenderMaze();
 
             //chvilku počkej
-            System.Threading.Thread.Sleep(150);
+            System.Threading.Thread.Sleep(50);
         }
     }
 

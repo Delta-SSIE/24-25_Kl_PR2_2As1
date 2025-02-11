@@ -5,6 +5,9 @@ class Program {
   {
       Maze maze = new Maze();
       maze.LoadMaze("maze.txt");
-      maze.Solve();
+        //maze.Solve(new QueueVisitList());
+        //maze.Solve(new StackVisitList());
+        //maze.Solve(new RandomVisitList());
+        maze.Solve(new PriorityVisitList(maze.Exit));
   }
 }
