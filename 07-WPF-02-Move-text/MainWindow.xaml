@@ -1,0 +1,42 @@
+﻿<Window x:Class="_07_WPF_02_Move_text.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:_07_WPF_02_Move_text"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <TextBox x:Name="inputTB"
+                 FontSize="24"
+                 HorizontalAlignment="Left" 
+                 Margin="91,69,0,0" 
+                 TextWrapping="NoWrap" 
+                 Text="" 
+                 VerticalAlignment="Top"                  
+                 Width="120"
+                 KeyDown="inputTB_KeyDown"
+                 />
+        
+        <TextBox x:Name="outputTB"
+                 IsEnabled="False"
+                 FontSize="24"
+                 HorizontalAlignment="Left" 
+                 Margin="91,117,0,0" 
+                 TextWrapping="NoWrap" 
+                 Text="" 
+                 VerticalAlignment="Top" 
+                 Width="120"/>
+        
+        <Button x:Name="moveBtn"
+                FontSize="24"
+                Content="Move text" 
+                Margin="247,69,0,0" 
+                HorizontalAlignment="Left" 
+                Width="88" 
+                Height="82" 
+                VerticalAlignment="Top"
+                Click="moveBtn_Click"                
+                />
+    </Grid>
+</Window>
