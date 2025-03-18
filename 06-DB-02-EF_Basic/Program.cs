@@ -8,15 +8,23 @@ namespace _06_DB_02_EF_Basic
         {
             using var dbContext = new MyDbContext();
 
-            //var cars = dbContext.Cars.ToList();
-            //foreach (var car in cars)
-            //{
-            //    Console.WriteLine($"{car.Id}: {car.Brand} {car.Model} ({car.RegPlate})");
-            //}
+            var cars = dbContext.Cars.ToList();
+            foreach (var car in cars)
+            {
+                Console.WriteLine($"{car.Id}: {car.Brand} {car.Model} ({car.RegPlate})");
+            }
 
-            //Car newCar = new Car() { Brand = "Toyota", Model = "Corolla", RegPlate = "ASDFGHJ", Purchased = DateTime.Now };
-            //dbContext.Cars.Add(newCar);
-            //dbContext.SaveChanges();
+            Car newCar = new Car() { Brand = "Toyota", Model = "Corolla", RegPlate = "ASDFGHJ", Purchased = DateTime.Now };
+            dbContext.Cars.Add(newCar);
+            dbContext.SaveChanges();
+
+            //update
+            newCar.RegPlate = "ERTYJOUI";
+            dbContext.SaveChanges();
+
+            //delete
+            dbContext.Cars.Remove(newCar);
+            dbContext.SaveChanges();
 
             //foreach (var car in dbContext.Cars.ToList())
             //{
