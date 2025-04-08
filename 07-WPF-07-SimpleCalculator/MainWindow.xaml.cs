@@ -12,14 +12,16 @@ using System.Windows.Shapes;
 
 namespace _07_WPF_07_SimpleCalculator
 {
+    enum Operation { None, Add, Subtract, Multiply, Divide }
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
         private string decimalDot = CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator;
-
-
+        
+        private Operation operation = Operation.None;
+        private double lastNumber = 0;
 
         public string DisplayNumber
         {
@@ -72,6 +74,47 @@ namespace _07_WPF_07_SimpleCalculator
         private void PercentBtn_Click(object sender, RoutedEventArgs e)
         {
             DisplayNumber = (double.Parse(DisplayNumber) / 100).ToString();
+        }
+
+        private void OperationBtn_Click(object sender, RoutedEventArgs e)
+        {
+            lastNumber = operation == Operation.None
+                ? double.Parse(DisplayNumber)
+                : Calculate();
+
+            DisplayNumber = "0";
+
+            if (sender == PlusBtn)
+                operation = Operation.Add;
+            else if (sender == MinusBtn)
+                operation = Operation.Subtract;
+            else if (sender == MultiplyBtn)
+                operation = Operation.Multiply;
+            else if (sender == DivideBtn)
+                operation = Operation.Divide;
+        }
+
+        private void EqualsBtn_Click(object sender, RoutedEventArgs e)
+        {
+            double result = Calculate();
+
+            lastNumber = 0;
+            DisplayNumber = result.ToString();
+            operation = Operation.None;
+        }
+
+        private double Calculate()
+        {
+            double number = double.Parse(DisplayNumber);
+            Func<double, double, double> formula = operation switch
+            {
+                Operation.Add => SimpleMath.Add,
+                Operation.Subtract => SimpleMath.Subtract,
+                Operation.Multiply => SimpleMath.Multiply,
+                Operation.Divide => SimpleMath.Divide,
+                _ => (double x, double y) => 0
+            };
+            return formula(lastNumber, number);
         }
     }
 }
