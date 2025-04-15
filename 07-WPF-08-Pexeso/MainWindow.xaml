@@ -33,21 +33,24 @@
             <Button Grid.Column="0"
                     Grid.Row="1"
                     Content="2x2"
-                    Style="{StaticResource ConfigBtnStyle}"                   
+                    Style="{StaticResource ConfigBtnStyle}"       
+                    Click="ConfigButton_Click"
                     />
             <Button Grid.Column="1"
                     Grid.Row="1"
                     Content="4x4"
                     Style="{StaticResource ConfigBtnStyle}"                   
+                    Click="ConfigButton_Click"
                     />
             <Button Grid.Column="2"
                     Grid.Row="1"
                     Content="6x6"
                     Style="{StaticResource ConfigBtnStyle}"                   
+                    Click="ConfigButton_Click"
                     />
 
         </Grid>
-        <Grid x:Name="GamePanel">
+        <Grid x:Name="GamePanel" Visibility="Hidden">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="200"/>
                 <ColumnDefinition/>
@@ -62,6 +65,11 @@
                     Grid.Column="1">
                 <Grid x:Name="Board" /> <!-- bude se plnit z programu -->
             </Border>
+        </Grid>
+        <Grid x:Name="ResultsPanel">
+            <Viewbox>
+                <Label Content="Hurá!"/>
+            </Viewbox>
         </Grid>
     </Grid>
 </Window>
