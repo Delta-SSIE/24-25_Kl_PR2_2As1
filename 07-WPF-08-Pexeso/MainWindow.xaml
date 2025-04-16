@@ -57,7 +57,7 @@
             </Grid.ColumnDefinitions>
 
             <Viewbox>
-                <Label x:Name="Skore" Content="0" Grid.Column="0" />
+                <Label x:Name="Skore" Content="{Binding Clicks, RelativeSource={RelativeSource AncestorType=Window}}" Grid.Column="0" />
             </Viewbox>
 
             <Border BorderBrush="Black" 
@@ -67,9 +67,36 @@
             </Border>
         </Grid>
         <Grid x:Name="ResultsPanel">
-            <Viewbox>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            
+            <Viewbox Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2">
                 <Label Content="Hurá!"/>
             </Viewbox>
+            
+            <Viewbox Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
+                <Label Content="{Binding Clicks, RelativeSource={RelativeSource AncestorType=Window}}"/>
+            </Viewbox>
+
+            <Button x:Name="PlayAgainBtn" 
+                    Grid.Column="0" Grid.Row="2"
+                    Content="Znovu"
+                    Margin="20"
+                    Click="PlayAgainBtn_Click"/>
+
+
+            <Button x:Name="ExitBtn" 
+                    Grid.Column="1" Grid.Row="2"
+                    Content="Konec"
+                    Margin="20"
+                    Click="ExitBtn_Click"/>
         </Grid>
     </Grid>
 </Window>
